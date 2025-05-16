@@ -8,6 +8,9 @@ load_dotenv()
 # URL RTSP da câmera
 RTSP_URL = os.getenv("RTSP_URL")
 
+# URL de conexão com banco de dados
+DATABASE_URL = os.getenv("DATABASE_URL")
+
 # Carrega a variável CAMERAS_JSON, fallback para lista vazia
 _raw = os.getenv("CAMERAS_JSON", "").strip()
 if not _raw:

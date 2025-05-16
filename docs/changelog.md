@@ -22,4 +22,8 @@
 
 ## v0.1.0 - 2025-05-16
 
-- Scaffold inicial da aplicação RTSP com FastAPI e detecção facial usando processos paralelos 
+- Scaffold inicial da aplicação RTSP com FastAPI e detecção facial usando processos paralelos
+
+## v0.3.0 - 2025-05-16
+
+- feat: scaffold inicial de banco de dados (tabelas events, known_faces e unknown_faces) 

@@ -24,6 +24,10 @@ Este documento descreve a estrutura de diretórios e arquivos utilizada no proje
 │   └── detectors/
 │       ├── __init__.py
 │       └── face_detector.py
+│   └── database/
+│       ├── __init__.py
+│       ├── session.py
+│       └── models.py
 ├── tests/
 ├── config.py
 ├── .env.example

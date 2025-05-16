@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from app.camera_manager import manager
 from app.routes.stream import router as stream_router
 from app.routes.cameras import router as cameras_router
+from app.database.session import engine, Base
 
 app = FastAPI()
 
@@ -11,6 +12,9 @@ app.include_router(cameras_router, prefix="/cameras")
 
 @app.on_event("startup")
 def on_startup():
+    # Cria tabelas no banco de dados
+    Base.metadata.create_all(bind=engine)
+    # Inicia captura e detecção nas câmeras configuradas
     manager.start_all()
 
 @app.on_event("shutdown")
