@@ -12,7 +12,20 @@ Consulte `docs/structure.md` para detalhes da estrutura e `docs/changelog.md` pa
   ```bash
   cp .env.example .env
   ```
-- Edite o arquivo `.env` para refletir suas câmeras.
+- Edite o arquivo `.env` para refletir suas câmeras e URL do banco.
+- Instale o PostgreSQL (macOS):
+  ```bash
+  brew install postgresql
+  brew services start postgresql
+  ```
+- Crie o banco de dados:
+  ```bash
+  createdb cameras_db
+  ```
+- No `.env`, defina:
+  ```env
+  DATABASE_URL=postgresql://user:password@localhost:5432/cameras_db
+  ```
 
 ## Endpoints
 - GET `/` : página inicial com seleção de câmeras
