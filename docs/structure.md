@@ -20,6 +20,7 @@ Este documento descreve a estrutura de diretórios e arquivos utilizada no proje
 │   ├── templates/
 │   │   ├── index.html   # Template de streaming RTSP
 │   │   └── dashboard.html  # Template de dashboard de detecção
+│   ├── static/          # Arquivos estáticos (JS/CSS)
 │   ├── routes/
 │   │   ├── __init__.py
 │   │   ├── stream.py

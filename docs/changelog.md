@@ -38,4 +38,9 @@
 
 - feat: adiciona rota e template de dashboard (`/dashboard`)
 - feat: define constantes JS para endpoints na interface HTML
-- docs: atualiza estrutura e rotas para dashboard 
+- docs: atualiza estrutura e rotas para dashboard
+
+## v0.3.3 - 2025-05-16
+
+- fix: cria diretório static/js e static/css para servir assets via StaticFiles
+- docs: adiciona static na estrutura do projeto 
