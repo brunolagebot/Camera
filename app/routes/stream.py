@@ -12,7 +12,9 @@ templates = Jinja2Templates(directory="app/templates")
 
 @router.get("/", response_class=HTMLResponse)
 async def index(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
+    # Pega lista de câmeras configuradas
+    cameras = manager.configs
+    return templates.TemplateResponse("index.html", {"request": request, "cameras": cameras})
 
 @router.websocket("/ws/{camera_id}")
 async def websocket_endpoint(websocket: WebSocket, camera_id: str):

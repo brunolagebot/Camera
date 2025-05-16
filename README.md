@@ -8,7 +8,11 @@ Mantenedor: Bruno Lage <bruno.lage@hotmail.com>
 Consulte `docs/structure.md` para detalhes da estrutura e `docs/changelog.md` para histórico de versões.
 
 ## Configuração
-- Edite o arquivo `.env` (baseado em `.env.example`) definindo `CAMERAS_JSON` com array de câmeras.
+- Copie o modelo de ambiente e ajuste a variável:
+  ```bash
+  cp .env.example .env
+  ```
+- Edite o arquivo `.env` para refletir suas câmeras.
 
 ## Endpoints
 - GET `/` : página inicial com seleção de câmeras
