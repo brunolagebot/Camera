@@ -14,4 +14,13 @@
 - Body: JSON com campos id, url, type e always_on
 
 ## DELETE /cameras/{camera_id}
-- Descrição: Para e remove uma câmera existente 
+- Descrição: Para e remove uma câmera existente
+
+## GET /events
+- Descrição: Lista todos os eventos de detecção
+
+## GET /faces/known
+- Descrição: Lista todas as faces conhecidas
+
+## GET /faces/unknown
+- Descrição: Lista todas as faces desconhecidas 

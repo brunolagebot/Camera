@@ -21,13 +21,16 @@ Este documento descreve a estrutura de diretórios e arquivos utilizada no proje
 │   │   ├── __init__.py
 │   │   ├── stream.py
 │   │   └── cameras.py
-│   └── detectors/
+│   ├── detectors/
+│   │   ├── __init__.py
+│   │   └── face_detector.py
+│   ├── database/
+│   │   ├── __init__.py
+│   │   ├── session.py
+│   │   └── models.py
+│   └── services/
 │       ├── __init__.py
-│       └── face_detector.py
-│   └── database/
-│       ├── __init__.py
-│       ├── session.py
-│       └── models.py
+│       └── storage.py
 ├── tests/
 ├── config.py
 ├── .env.example

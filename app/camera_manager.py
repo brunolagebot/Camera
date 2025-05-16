@@ -27,7 +27,7 @@ class CameraManager:
         output_q = self.manager.Queue(maxsize=10)
         # Instancia processos de captura e detecção
         cam_proc = CameraProcess(conf["url"], frame_q)
-        det_proc = DetectionProcess(frame_q, output_q)
+        det_proc = DetectionProcess(frame_q, output_q, cam_id)
         cam_proc.start()
         det_proc.start()
         self.processes[cam_id] = {"camera": cam_proc, "detect": det_proc, "output_queue": output_q}

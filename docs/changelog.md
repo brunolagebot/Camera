@@ -24,6 +24,12 @@
 
 - Scaffold inicial da aplicação RTSP com FastAPI e detecção facial usando processos paralelos
 
+## v0.3.1 - 2025-05-16
+
+- feat: adiciona serviço de storage para persistência de eventos e faces
+- feat: integra salvar eventos em DetectionProcess
+- feat: rotas GET /events, GET /faces/known e GET /faces/unknown
+
 ## v0.3.0 - 2025-05-16
 
 - feat: scaffold inicial de banco de dados (tabelas events, known_faces e unknown_faces) 

@@ -2,6 +2,8 @@ from fastapi import FastAPI
 from app.camera_manager import manager
 from app.routes.stream import router as stream_router
 from app.routes.cameras import router as cameras_router
+from app.routes.events import router as events_router
+from app.routes.faces import router as faces_router
 from app.database.session import engine, Base
 
 app = FastAPI()
@@ -9,6 +11,8 @@ app = FastAPI()
 # Inclui rotas de streaming e gerenciamento de câmeras
 app.include_router(stream_router)
 app.include_router(cameras_router, prefix="/cameras")
+app.include_router(events_router)
+app.include_router(faces_router)
 
 @app.on_event("startup")
 def on_startup():
