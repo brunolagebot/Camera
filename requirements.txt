@@ -2,4 +2,6 @@ fastapi
 uvicorn[standard]
 opencv-python
 python-dotenv
-jinja2 
+jinja2
+sqlalchemy
+psycopg2-binary 

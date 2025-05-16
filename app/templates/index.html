@@ -7,20 +7,38 @@
 </head>
 <body>
     <h1>Streaming RTSP com Detecção Facial</h1>
+    <div>
+        <label for="cameraSelect">Selecione a câmera:</label>
+        <select id="cameraSelect">
+            {% for cam in cameras %}
+            <option value="{{ cam.id }}">{{ cam.id }}</option>
+            {% endfor %}
+        </select>
+    </div>
     <canvas id="videoCanvas"></canvas>
     <script>
-        const ws = new WebSocket(`ws://${location.host}/ws`);
+        let ws;
         const canvas = document.getElementById("videoCanvas");
         const ctx = canvas.getContext("2d");
-        ws.onmessage = (event) => {
-            const img = new Image();
-            img.onload = () => {
-                canvas.width = img.width;
-                canvas.height = img.height;
-                ctx.drawImage(img, 0, 0);
+        const select = document.getElementById("cameraSelect");
+
+        function startStream() {
+            if (ws) ws.close();
+            const cameraId = select.value;
+            ws = new WebSocket(`ws://${location.host}/ws/${cameraId}`);
+            ws.onmessage = (event) => {
+                const img = new Image();
+                img.onload = () => {
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    ctx.drawImage(img, 0, 0);
+                };
+                img.src = 'data:image/jpeg;base64,' + event.data;
             };
-            img.src = 'data:image/jpeg;base64,' + event.data;
-        };
+        }
+
+        select.onchange = startStream;
+        window.onload = () => startStream();
     </script>
 </body>
 </html> 

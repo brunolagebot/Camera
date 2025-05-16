@@ -1,7 +1,17 @@
 # Definição de Rotas
 
 ## GET /
-- Descrição: Página inicial com template de vídeo e canvas para stream
+- Descrição: Página inicial com dropdown de câmeras, template de vídeo e canvas para stream
 
-## WebSocket /ws
-- Descrição: Envia frames JPEG codificados em base64 para renderização em tempo real 
+## WebSocket /ws/{camera_id}
+- Descrição: Envia frames JPEG codificados em base64 da câmera especificada para renderização em tempo real
+
+## GET /cameras
+- Descrição: Lista configurações das câmeras (id, url, type, always_on)
+
+## POST /cameras
+- Descrição: Adiciona e inicia uma câmera sob demanda
+- Body: JSON com campos id, url, type e always_on
+
+## DELETE /cameras/{camera_id}
+- Descrição: Para e remove uma câmera existente 
