@@ -5,7 +5,7 @@ from fastapi import APIRouter, WebSocket, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
-from app.queues import output_queue
+from app.camera_manager import manager
 
 router = APIRouter()
 templates = Jinja2Templates(directory="app/templates")
@@ -14,11 +14,14 @@ templates = Jinja2Templates(directory="app/templates")
 async def index(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
-@router.websocket("/ws")
-async def websocket_endpoint(websocket: WebSocket):
+@router.websocket("/ws/{camera_id}")
+async def websocket_endpoint(websocket: WebSocket, camera_id: str):
     await websocket.accept()
     while True:
-        # Obtém frame processado sem bloquear o event loop
-        jpg_bytes = await asyncio.get_event_loop().run_in_executor(None, output_queue.get)
+        # Obtém frame processado da câmera específica sem bloquear o event loop
+        output_q = manager.processes.get(camera_id, {}).get("output_queue")
+        if not output_q:
+            break
+        jpg_bytes = await asyncio.get_event_loop().run_in_executor(None, output_q.get)
         data = base64.b64encode(jpg_bytes).decode("utf-8")
         await websocket.send_text(data) 
