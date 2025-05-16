@@ -23,4 +23,7 @@
 - Descrição: Lista todas as faces conhecidas
 
 ## GET /faces/unknown
-- Descrição: Lista todas as faces desconhecidas 
+- Descrição: Lista todas as faces desconhecidas
+
+## GET /dashboard
+- Descrição: Exibe interface HTML de dashboard com streaming e tabelas de dados 

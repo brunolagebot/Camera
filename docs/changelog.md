@@ -32,4 +32,10 @@
 
 ## v0.3.0 - 2025-05-16
 
-- feat: scaffold inicial de banco de dados (tabelas events, known_faces e unknown_faces) 
+- feat: scaffold inicial de banco de dados (tabelas events, known_faces e unknown_faces)
+
+## v0.3.2 - 2025-05-16
+
+- feat: adiciona rota e template de dashboard (`/dashboard`)
+- feat: define constantes JS para endpoints na interface HTML
+- docs: atualiza estrutura e rotas para dashboard 

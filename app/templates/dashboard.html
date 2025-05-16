@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard de Detecção Facial</title>
+    <style>
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #ccc; padding: 4px; text-align: left; }
+        canvas { max-width: 100%; }
+    </style>
+</head>
+<body>
+    <h1>Dashboard de Detecção</h1>
+    <div>
+        <label for="cameraSelect">Câmera:</label>
+        <select id="cameraSelect"></select>
+    </div>
+    <canvas id="videoCanvas"></canvas>
+    <h2>Eventos</h2>
+    <table id="eventsTable">
+        <thead><tr><th>ID</th><th>Câmera</th><th>Timestamp</th><th>Tipo</th></tr></thead>
+        <tbody></tbody>
+    </table>
+    <h2>Faces Conhecidas</h2>
+    <table id="knownFacesTable">
+        <thead><tr><th>ID</th><th>Nome</th><th>Timestamp</th></tr></thead>
+        <tbody></tbody>
+    </table>
+    <h2>Faces Desconhecidas</h2>
+    <table id="unknownFacesTable">
+        <thead><tr><th>ID</th><th>Timestamp</th></tr></thead>
+        <tbody></tbody>
+    </table>
+    <script>
+        const API_BASE = `${location.protocol}//${location.host}`;
+        const ENDPOINTS = {
+            cameras: '/cameras',
+            events: '/events',
+            knownFaces: '/faces/known',
+            unknownFaces: '/faces/unknown',
+            ws: camId => `/ws/${camId}`
+        };
+
+        async function fetchJSON(uri) {
+            const res = await fetch(API_BASE + uri);
+            return res.json();
+        }
+
+        async function loadCameras() {
+            const cams = await fetchJSON(ENDPOINTS.cameras);
+            const sel = document.getElementById('cameraSelect');
+            sel.innerHTML = '';
+            cams.forEach(cam => {
+                const opt = document.createElement('option');
+                opt.value = cam.id; opt.textContent = cam.id;
+                sel.appendChild(opt);
+            });
+            sel.onchange();
+        }
+
+        let ws;
+        function startStream() {
+            if (ws) ws.close();
+            const camId = document.getElementById('cameraSelect').value;
+            ws = new WebSocket(`ws://${location.host}${ENDPOINTS.ws(camId)}`);
+            ws.onmessage = event => {
+                const img = new Image();
+                img.onload = () => {
+                    const canvas = document.getElementById('videoCanvas');
+                    canvas.width = img.width; canvas.height = img.height;
+                    canvas.getContext('2d').drawImage(img, 0, 0);
+                };
+                img.src = 'data:image/jpeg;base64,' + event.data;
+            };
+        }
+
+        async function loadEvents() {
+            const events = await fetchJSON(ENDPOINTS.events);
+            const tbody = document.getElementById('eventsTable').querySelector('tbody');
+            tbody.innerHTML = '';
+            events.forEach(e => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td>${e.id}</td><td>${e.camera_id}</td><td>${new Date(e.timestamp).toLocaleString()}</td><td>${e.face_type}</td>`;
+                tbody.appendChild(tr);
+            });
+        }
+
+        async function loadKnownFaces() {
+            const faces = await fetchJSON(ENDPOINTS.knownFaces);
+            const tbody = document.getElementById('knownFacesTable').querySelector('tbody');
+            tbody.innerHTML = '';
+            faces.forEach(f => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td>${f.id}</td><td>${f.name}</td><td>${new Date(f.created_at).toLocaleString()}</td>`;
+                tbody.appendChild(tr);
+            });
+        }
+
+        async function loadUnknownFaces() {
+            const faces = await fetchJSON(ENDPOINTS.unknownFaces);
+            const tbody = document.getElementById('unknownFacesTable').querySelector('tbody');
+            tbody.innerHTML = '';
+            faces.forEach(f => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td>${f.id}</td><td>${new Date(f.detected_at).toLocaleString()}</td>`;
+                tbody.appendChild(tr);
+            });
+        }
+
+        window.onload = () => {
+            loadCameras();
+            document.getElementById('cameraSelect').onchange = () => {
+                startStream();
+                loadEvents();
+                loadKnownFaces();
+                loadUnknownFaces();
+            };
+        };
+    </script>
+</body>
+</html> 

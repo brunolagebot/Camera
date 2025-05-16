@@ -17,10 +17,14 @@ Este documento descreve a estrutura de diretórios e arquivos utilizada no proje
 │   ├── camera.py
 │   ├── camera_manager.py
 │   ├── queues.py
+│   ├── templates/
+│   │   ├── index.html   # Template de streaming RTSP
+│   │   └── dashboard.html  # Template de dashboard de detecção
 │   ├── routes/
 │   │   ├── __init__.py
 │   │   ├── stream.py
-│   │   └── cameras.py
+│   │   ├── cameras.py
+│   │   └── dashboard.py   # Rota do dashboard HTML
 │   ├── detectors/
 │   │   ├── __init__.py
 │   │   └── face_detector.py
