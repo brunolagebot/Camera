@@ -30,6 +30,8 @@ Consulte `docs/structure.md` para detalhes da estrutura e `docs/changelog.md` pa
   ```bash
   brew install cmake
   pip install dlib face-recognition
+  # Se receber aviso sobre face_recognition_models, execute:
+  pip install git+https://github.com/ageitgey/face_recognition_models
   pip freeze > requirements.txt
   ```
 
