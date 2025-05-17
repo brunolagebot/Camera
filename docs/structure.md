@@ -58,6 +58,7 @@ Este documento descreve a estrutura de diretórios e arquivos utilizada no proje
 * Onde reside toda a lógica da aplicação.
 * **main.py**: inicializa o servidor, as rotas e configurações.
 * **config.py**: centraliza configurações reutilizáveis (como caminhos, thresholds, etc.).
+* **camera_manager.py**: gerencia processos de captura e detecção para múltiplas câmeras (falhas em câmeras offline são capturadas sem impedir o startup).
 
 ### `/routes`
 
