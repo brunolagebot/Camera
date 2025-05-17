@@ -49,3 +49,8 @@
 
 - docs: adiciona newdashboard na estrutura do projeto
 - docs: documenta rota GET /newdashboard para servir a UI React 
+
+## v0.3.5 - 2025-05-16
+
+- feat: adiciona batch upload de imagens para processamento em lote
+- feat: input de diretório no dashboard e endpoint POST `/batch/upload-images` 

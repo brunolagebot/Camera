@@ -11,6 +11,12 @@
 </head>
 <body>
     <h1>Dashboard de Detecção</h1>
+    <section>
+        <h2>Importar Fotos</h2>
+        <input type="file" id="dirPicker" webkitdirectory multiple />
+        <button id="uploadBtn">Processar Imagens</button>
+        <div id="uploadResults"></div>
+    </section>
     <div>
         <label for="cameraSelect">Câmera:</label>
         <select id="cameraSelect"></select>
@@ -115,6 +121,16 @@
                 loadKnownFaces();
                 loadUnknownFaces();
             };
+        };
+
+        document.getElementById('uploadBtn').onclick = async () => {
+            const input = document.getElementById('dirPicker');
+            const files = Array.from(input.files);
+            const form = new FormData();
+            files.forEach(f => form.append('files', f));
+            const res = await fetch(`${API_BASE}/batch/upload-images`, { method: 'POST', body: form });
+            const data = await res.json();
+            document.getElementById('uploadResults').textContent = JSON.stringify(data, null, 2);
         };
     </script>
 </body>

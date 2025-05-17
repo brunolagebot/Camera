@@ -35,7 +35,8 @@ Este documento descreve a estrutura de diretórios e arquivos utilizada no proje
 │   │   └── models.py
 │   └── services/
 │       ├── __init__.py
-│       └── storage.py
+│       ├── storage.py
+│       └── batch.py  # Processamento de imagens em lote
 ├── tests/
 ├── config.py
 ├── .env.example

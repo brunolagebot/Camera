@@ -29,4 +29,7 @@
 - Descrição: Exibe interface HTML de dashboard com streaming e tabelas de dados
 
 ## GET /newdashboard
-- Descrição: Serves a interface React em newdashboard/build para teste da UI React 
+- Descrição: Serves a interface React em newdashboard/build para teste da UI React
+
+## POST /batch/upload-images
+- Descrição: Recebe múltiplos arquivos e persiste embeddings de faces como unknown_faces 
