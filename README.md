@@ -26,6 +26,12 @@ Consulte `docs/structure.md` para detalhes da estrutura e `docs/changelog.md` pa
   ```env
   DATABASE_URL=postgresql://user:password@localhost:5432/cameras_db
   ```
+- Instale dependências para detecção de faces:
+  ```bash
+  brew install cmake
+  pip install dlib face-recognition
+  pip freeze > requirements.txt
+  ```
 
 ## Endpoints
 - GET `/` : página inicial com seleção de câmeras
