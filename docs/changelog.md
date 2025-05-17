@@ -58,3 +58,7 @@
 ## v0.3.6 - 2025-05-16
 
 - fix: adiciona python-multipart para suportar upload de arquivos via form 
+
+## v0.3.7 - 2025-05-16
+
+- docs: marca dashboard Jinja2 como deprecated em structure.md e routes.md 

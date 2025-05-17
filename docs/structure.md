@@ -19,13 +19,13 @@ Este documento descreve a estrutura de diretórios e arquivos utilizada no proje
 │   ├── queues.py
 │   ├── templates/
 │   │   ├── index.html   # Template de streaming RTSP
-│   │   └── dashboard.html  # Template de dashboard de detecção
+│   │   └── dashboard.html  # (deprecated) interface Jinja2 de dashboard
 │   ├── static/          # Arquivos estáticos (JS/CSS)
 │   ├── routes/
 │   │   ├── __init__.py
 │   │   ├── stream.py
 │   │   ├── cameras.py
-│   │   └── dashboard.py   # Rota do dashboard HTML
+│   │   └── dashboard.py   # (deprecated) rota Jinja2 de dashboard
 │   ├── detectors/
 │   │   ├── __init__.py
 │   │   └── face_detector.py

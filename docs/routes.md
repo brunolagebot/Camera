@@ -26,7 +26,7 @@
 - Descrição: Lista todas as faces desconhecidas
 
 ## GET /dashboard
-- Descrição: Exibe interface HTML de dashboard com streaming e tabelas de dados
+- Descrição: Serve a interface React buildada (`newdashboard/build/index.html`) como dashboard principal
 
 ## GET /newdashboard
 - Descrição: Serves a interface React em newdashboard/build para teste da UI React
