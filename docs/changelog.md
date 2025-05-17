@@ -43,4 +43,9 @@
 ## v0.3.3 - 2025-05-16
 
 - fix: cria diretório static/js e static/css para servir assets via StaticFiles
-- docs: adiciona static na estrutura do projeto 
+- docs: adiciona static na estrutura do projeto
+
+## v0.3.4 - 2025-05-16
+
+- docs: adiciona newdashboard na estrutura do projeto
+- docs: documenta rota GET /newdashboard para servir a UI React 

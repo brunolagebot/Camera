@@ -45,6 +45,7 @@ Este documento descreve a estrutura de diretórios e arquivos utilizada no proje
     ├── structure.md
     ├── changelog.md
     └── routes.md
+├── newdashboard/   # Código fonte e build da UI em React
 ```
 
 ---
