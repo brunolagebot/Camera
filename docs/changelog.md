@@ -53,4 +53,8 @@
 ## v0.3.5 - 2025-05-16
 
 - feat: adiciona batch upload de imagens para processamento em lote
-- feat: input de diretório no dashboard e endpoint POST `/batch/upload-images` 
+- feat: input de diretório no dashboard e endpoint POST `/batch/upload-images`
+
+## v0.3.6 - 2025-05-16
+
+- fix: adiciona python-multipart para suportar upload de arquivos via form 

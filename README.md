@@ -29,7 +29,7 @@ Consulte `docs/structure.md` para detalhes da estrutura e `docs/changelog.md` pa
 - Instale dependências para detecção de faces:
   ```bash
   brew install cmake
-  pip install setuptools dlib face-recognition
+  pip install setuptools dlib face-recognition python-multipart
   # Se receber aviso sobre face_recognition_models, execute:
   pip install git+https://github.com/ageitgey/face_recognition_models
   pip freeze > requirements.txt
