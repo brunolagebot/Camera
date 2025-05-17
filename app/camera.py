@@ -2,12 +2,11 @@ import cv2
 import time
 import multiprocessing
 
-from app.queues import frame_queue
-
 class CameraProcess(multiprocessing.Process):
-    def __init__(self, rtsp_url: str):
+    def __init__(self, rtsp_url: str, frame_queue):
         super().__init__()
         self.rtsp_url = rtsp_url
+        self.frame_queue = frame_queue
         self._stop_event = multiprocessing.Event()
 
     def run(self):
@@ -20,8 +19,8 @@ class CameraProcess(multiprocessing.Process):
             if not ret:
                 time.sleep(0.1)
                 continue
-            if not frame_queue.full():
-                frame_queue.put(frame)
+            if not self.frame_queue.full():
+                self.frame_queue.put(frame)
         cap.release()
 
     def stop(self):

@@ -1,27 +1,37 @@
-import multiprocessing
-
 from fastapi import FastAPI
-from config import RTSP_URL
-
-from app.camera import CameraProcess
-from app.detectors.face_detector import DetectionProcess
+from fastapi.staticfiles import StaticFiles
+from app.camera_manager import manager
 from app.routes.stream import router as stream_router
+from app.routes.cameras import router as cameras_router
+from app.routes.events import router as events_router
+from app.routes.faces import router as faces_router
+from app.routes.dashboard import router as dashboard_router
+from app.routes.batch import router as batch_router
+from app.database.session import engine, Base
 
 app = FastAPI()
 
-# Inclui rotas
-app.include_router(stream_router)
+# Serve build do React localizado em newdashboard/build para testes em /newdashboard
+app.mount("/newdashboard", StaticFiles(directory="newdashboard/build", html=True), name="newdashboard")
 
-# Processos de captura e detecção
-camera_process = CameraProcess(RTSP_URL)
-detection_process = DetectionProcess()
+# Monta diretório de arquivos estáticos (JS/CSS) em '/static'
+app.mount("/static", StaticFiles(directory="app/static"), name="static")
+
+# Inclui rotas de streaming e gerenciamento de câmeras
+app.include_router(stream_router)
+app.include_router(cameras_router, prefix="/cameras")
+app.include_router(events_router)
+app.include_router(faces_router)
+app.include_router(dashboard_router)
+app.include_router(batch_router)
 
 @app.on_event("startup")
 def on_startup():
-    camera_process.start()
-    detection_process.start()
+    # Cria tabelas no banco de dados
+    Base.metadata.create_all(bind=engine)
+    # Inicia captura e detecção nas câmeras configuradas
+    manager.start_all()
 
 @app.on_event("shutdown")
 def on_shutdown():
-    camera_process.stop()
-    detection_process.stop() 
+    manager.stop_all() 

@@ -1,5 +1,56 @@
 # Changelog
 
+## v0.2.2 - 2025-05-16
+
+- fix: instancia CascadeClassifier dentro do método run de face_detector para evitar erro de pickle em multiprocessing
+
+## v0.2.1 - 2025-05-16
+
+- fix: atualizar index.html para seleção de câmera e WebSocket dinâmico
+- feat: index route inclui lista de câmeras no contexto do template
+
+## v0.2.0 - 2025-05-16
+
+- feat: implementa CameraManager para múltiplas câmeras dinâmicas
+- feat: adiciona rotas GET/POST/DELETE em /cameras
+- refactor: adapta camera.py e face_detector.py para injeção de filas por câmera
+- feat: atualiza WebSocket para /ws/{camera_id}
+
+## v0.1.1 - 2025-05-16
+
+- docs: adiciona link do repositório e email de contato
+
 ## v0.1.0 - 2025-05-16
 
-- Scaffold inicial da aplicação RTSP com FastAPI e detecção facial usando processos paralelos 
+- Scaffold inicial da aplicação RTSP com FastAPI e detecção facial usando processos paralelos
+
+## v0.3.1 - 2025-05-16
+
+- feat: adiciona serviço de storage para persistência de eventos e faces
+- feat: integra salvar eventos em DetectionProcess
+- feat: rotas GET /events, GET /faces/known e GET /faces/unknown
+
+## v0.3.0 - 2025-05-16
+
+- feat: scaffold inicial de banco de dados (tabelas events, known_faces e unknown_faces)
+
+## v0.3.2 - 2025-05-16
+
+- feat: adiciona rota e template de dashboard (`/dashboard`)
+- feat: define constantes JS para endpoints na interface HTML
+- docs: atualiza estrutura e rotas para dashboard
+
+## v0.3.3 - 2025-05-16
+
+- fix: cria diretório static/js e static/css para servir assets via StaticFiles
+- docs: adiciona static na estrutura do projeto
+
+## v0.3.4 - 2025-05-16
+
+- docs: adiciona newdashboard na estrutura do projeto
+- docs: documenta rota GET /newdashboard para servir a UI React 
+
+## v0.3.5 - 2025-05-16
+
+- feat: adiciona batch upload de imagens para processamento em lote
+- feat: input de diretório no dashboard e endpoint POST `/batch/upload-images` 

@@ -1,5 +1,8 @@
 # 📁 Estrutura de Pastas do Projeto - Reconhecimento Facial via RTSP
 
+# Repositório: https://github.com/brunolagebot/cameras
+# Contato: bruno.lage@hotmail.com
+
 Este documento descreve a estrutura de diretórios e arquivos utilizada no projeto, com o objetivo de manter a organização, facilitar a manutenção e garantir padronização entre os desenvolvedores.
 
 ---
@@ -12,13 +15,28 @@ Este documento descreve a estrutura de diretórios e arquivos utilizada no proje
 │   ├── __init__.py
 │   ├── main.py
 │   ├── camera.py
+│   ├── camera_manager.py
 │   ├── queues.py
+│   ├── templates/
+│   │   ├── index.html   # Template de streaming RTSP
+│   │   └── dashboard.html  # Template de dashboard de detecção
+│   ├── static/          # Arquivos estáticos (JS/CSS)
 │   ├── routes/
 │   │   ├── __init__.py
-│   │   └── stream.py
-│   └── detectors/
+│   │   ├── stream.py
+│   │   ├── cameras.py
+│   │   └── dashboard.py   # Rota do dashboard HTML
+│   ├── detectors/
+│   │   ├── __init__.py
+│   │   └── face_detector.py
+│   ├── database/
+│   │   ├── __init__.py
+│   │   ├── session.py
+│   │   └── models.py
+│   └── services/
 │       ├── __init__.py
-│       └── face_detector.py
+│       ├── storage.py
+│       └── batch.py  # Processamento de imagens em lote
 ├── tests/
 ├── config.py
 ├── .env.example
@@ -28,6 +46,7 @@ Este documento descreve a estrutura de diretórios e arquivos utilizada no proje
     ├── structure.md
     ├── changelog.md
     └── routes.md
+├── newdashboard/   # Código fonte e build da UI em React
 ```
 
 ---
